@@ -1,0 +1,14 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"target": "es5",
+		"noImplicitAny": true,
+		"outDir": "bin"
+	},
+	"exclude": [
+		"bin",
+		"node_modules",
+		"typings"
+	]
+
+}

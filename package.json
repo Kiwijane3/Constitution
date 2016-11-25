@@ -1,0 +1,29 @@
+{
+  "name": "constitution",
+  "version": "0.1.0",
+  "description": "A tool for secure, democratic management and amendment of documents",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.jhs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiwijane3/Constitution.git"
+  },
+  "keywords": [
+    "diff",
+    "patch",
+    "team",
+    "democracy"
+  ],
+  "author": "Jane Danielle Fraser",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Kiwijane3/Constitution/issues"
+  },
+  "homepage": "https://github.com/Kiwijane3/Constitution#readme",
+  "dependencies": {
+    "diff": "^3.0.1",
+    "mongodb": "^2.2.11"
+  }
+}
