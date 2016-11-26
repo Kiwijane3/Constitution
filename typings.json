@@ -5,6 +5,7 @@
     "mongodb": "registry:npm/mongodb#2.1.0+20161119174748"
   },
   "globalDependencies": {
+    "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20161012061536",
     "node": "registry:dt/node#6.0.0+20161110151007"
   }
 }

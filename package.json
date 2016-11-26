@@ -2,7 +2,7 @@
   "name": "constitution",
   "version": "0.1.0",
   "description": "A tool for secure, democratic management and amendment of documents",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "node index.jhs"
   },
@@ -25,6 +25,10 @@
   "dependencies": {
     "async-waterfall": "^0.1.5",
     "diff": "^3.0.1",
+    "express": "^4.14.0",
     "mongodb": "^2.2.11"
+  },
+  "scripts": {
+    "start": "node bin/index.js"
   }
 }
