@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Kiwijane3/Constitution#readme",
   "dependencies": {
+    "async-waterfall": "^0.1.5",
     "diff": "^3.0.1",
     "mongodb": "^2.2.11"
   }
