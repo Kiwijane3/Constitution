@@ -195,6 +195,7 @@ export class DocumentController {
 					if (patch.name == patchName){
 						// Calculate the current result of the patch.
 						patch.result = this.getBodyAfterPatch(document, patch);
+						patch.changes = Diff.diffWords(document.body, patch.body);
 						callback(200, patch);
 						return;
 					}
@@ -225,7 +226,7 @@ export class DocumentController {
 									);
 									// Voting is done.
 									// TODO: Check if patch has passed and apply.
-									callback(200); 
+									callback(200);
 								}
 							}
 						} else {

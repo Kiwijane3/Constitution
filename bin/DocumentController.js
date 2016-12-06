@@ -167,6 +167,7 @@ var DocumentController = (function () {
                     var patch = _a[_i];
                     if (patch.name == patchName) {
                         patch.result = _this.getBodyAfterPatch(document, patch);
+                        patch.changes = Diff.diffWords(document.body, patch.body);
                         callback(200, patch);
                         return;
                     }

@@ -1,0 +1,16 @@
+Models are described in Models.ts
+
+Endpoints:
+
+/documents/
+  - POST (DocumentRequest) - Post a new Document.
+  x/:documentName
+  - GET (Document): Returns the document.
+  - Subs:
+    x/patch
+    - POST (PatchRequest): Submit a new Patch.
+    - Subs:
+      x/:patchName
+      - Get (Patch): Returns the Patch.
+    x/voters
+      - POST (AddVoterRequest) - Add a new voter to the document.

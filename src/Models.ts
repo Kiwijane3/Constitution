@@ -1,3 +1,6 @@
+/// <reference path="../typings/index.d.ts"/>
+import Diff = require('diff');
+
 export interface Document {
 
 	_id?: any;
@@ -30,6 +33,8 @@ export interface Patch {
 
 	// The body of the document after this patch is applied, use for getPatch.
 	result?: string;
+
+	changes?: Diff.IDiffResult[];
 
 }
 
