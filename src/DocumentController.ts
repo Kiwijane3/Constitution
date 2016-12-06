@@ -196,11 +196,47 @@ export class DocumentController {
 						// Calculate the current result of the patch.
 						patch.result = this.getBodyAfterPatch(document, patch);
 						callback(200, patch);
+						return;
 					}
 				}
 				callback(404, null, "No such patch");
 			} else {
-				callback(501, null,  `Internal Failure: ${error.message}`);
+				callback(501, null,  `Internal Failure: ${error}`);
+			}
+		});
+	}
+
+	public voteOnPatch(documentName: string, patchName: string, username: string, password: string, vote: boolean, callback: (status: number, error?: string) => void) {
+		this.getDocument(documentName, (status, document, error) => {
+			if (status == 200){
+				// Authenticate the user.
+				this.userController.authenticateUser(username, password, (status, user, error) => {
+					// Check that the user is a voter.
+					if (document.voters.indexOf(user.username) > -1){
+						if (status == 200){
+							for (let item of document.patches) {
+								let patch: Patch = item;
+								if (patch.name == patchName){
+									patch.votes.push(
+										{
+											name: user.username,
+											vote: vote
+										}
+									);
+									// Voting is done.
+									// TODO: Check if patch has passed and apply.
+									callback(200); 
+								}
+							}
+						} else {
+							callback(status, error);
+						}
+					} else {
+						callback(401, "You are not a voter on that document.");
+					}
+				});
+			} else {
+				callback(status, error);
 			}
 		});
 	}

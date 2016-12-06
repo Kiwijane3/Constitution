@@ -168,12 +168,46 @@ var DocumentController = (function () {
                     if (patch.name == patchName) {
                         patch.result = _this.getBodyAfterPatch(document, patch);
                         callback(200, patch);
+                        return;
                     }
                 }
                 callback(404, null, "No such patch");
             }
             else {
-                callback(501, null, "Internal Failure: " + error.message);
+                callback(501, null, "Internal Failure: " + error);
+            }
+        });
+    };
+    DocumentController.prototype.voteOnPatch = function (documentName, patchName, username, password, vote, callback) {
+        var _this = this;
+        this.getDocument(documentName, function (status, document, error) {
+            if (status == 200) {
+                _this.userController.authenticateUser(username, password, function (status, user, error) {
+                    if (document.voters.indexOf(user.username) > -1) {
+                        if (status == 200) {
+                            for (var _i = 0, _a = document.patches; _i < _a.length; _i++) {
+                                var item = _a[_i];
+                                var patch = item;
+                                if (patch.name == patchName) {
+                                    patch.votes.push({
+                                        name: user.username,
+                                        vote: vote
+                                    });
+                                    callback(200);
+                                }
+                            }
+                        }
+                        else {
+                            callback(status, error);
+                        }
+                    }
+                    else {
+                        callback(401, "You are not a voter on that document.");
+                    }
+                });
+            }
+            else {
+                callback(status, error);
             }
         });
     };
